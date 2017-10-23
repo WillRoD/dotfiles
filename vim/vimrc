@@ -1,0 +1,67 @@
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader=","
+let g:mapleader=","
+
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
+
+" :W sudo saves the file
+command W w !sudo tee % > /dev/null
+
+" Stuff to do with pretty colours
+let g:solarized_termcolors=256
+syntax on
+set background=dark
+colorscheme solarized
+
+" Show line numbers by default
+set number
+
+" Show the ruler
+set ruler
+
+" Sensible defaults for a modern machine (bigger history..etc...)
+set hidden
+set history=100
+
+" Stuff to do with whitespace
+filetype plugin on
+filetype indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set autoindent
+
+" Show trailing whitespace
+:highlight TrWhitespace ctermbg=red guibg=red
+:match TrWhitespace /\s\+$/
+
+" Make searching more helpful. Show highlights and use esc to clear them.
+set hlsearch
+
+" Makes search act like search in modern browsers
+set incsearch 
+
+" Show matching parentheses
+set showmatch
+
+" Language specific settings
+augroup languageconfigs
+    autocmd FileType go setlocal noexpandtab
+    autocmd FileType gitcommit setlocal tw=72
+augroup END
+
+" Many terminal emulators support mouse interactions. Enable just incase.
+if has('mouse')
+  set mouse=a
+endif
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+
+" Always show the status bar
+set laststatus=2
